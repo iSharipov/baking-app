@@ -35,5 +35,7 @@ ext.versions = [ANDROID_SUPPORT  : "27.1.1",
                 RX_JAVA          : "2.1.14",
                 RX_ANDROID       : "2.0.2",
                 DAGGER           : "2.16",
-                ROOM             : "1.1.1-rc1"
+                ROOM             : "1.1.1-rc1",
+                LEAK_CANARY      : "1.5.4",
+                GLIDE            : "4.7.1"
 ]

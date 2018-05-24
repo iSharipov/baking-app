@@ -26,6 +26,12 @@ dependencies {
     implementation "com.android.support:design:$versions.ANDROID_SUPPORT"
     implementation "com.android.support.constraint:constraint-layout:$versions.CONSTRAINT_LAYOUT"
 
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$versions.LEAK_CANARY"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$versions.LEAK_CANARY"
+    testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$versions.LEAK_CANARY"
+
+    implementation "com.github.bumptech.glide:glide:$versions.GLIDE"
+
     implementation("com.squareup.retrofit2:retrofit:$versions.RETROFIT") {
         exclude module: 'okhttp'
     }
