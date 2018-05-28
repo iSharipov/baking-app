@@ -36,6 +36,7 @@ dependencies {
         exclude module: 'okhttp'
     }
     implementation "com.squareup.retrofit2:converter-gson:$versions.RETROFIT"
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     implementation "com.squareup.okhttp3:okhttp:$versions.OK_HTTP"
     implementation "com.squareup.okhttp3:okhttp-urlconnection:$versions.OK_HTTP"
     implementation "com.squareup.okhttp3:logging-interceptor:$versions.OK_HTTP"
@@ -51,6 +52,9 @@ dependencies {
 
     implementation "com.google.dagger:dagger:$versions.DAGGER"
     annotationProcessor "com.google.dagger:dagger-compiler:$versions.DAGGER"
+    implementation "com.google.dagger:dagger-android:$versions.DAGGER"
+    implementation "com.google.dagger:dagger-android-support:$versions.DAGGER"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$versions.DAGGER"
     compileOnly 'javax.annotation:jsr250-api:1.0'
 
     implementation "com.jakewharton:butterknife:$versions.BUTTERKNIFE"

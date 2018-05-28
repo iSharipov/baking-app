@@ -1,17 +1,19 @@
-package com.isharipov.bakingapp.app;
+package com.isharipov.bakingapp.application;
 
-import android.app.Application;
 import android.support.annotation.NonNull;
 
 import com.isharipov.bakingapp.BuildConfig;
+import com.isharipov.bakingapp.application.di.DaggerAppComponent;
 import com.squareup.leakcanary.LeakCanary;
 
+import dagger.android.AndroidInjector;
+import dagger.android.support.DaggerApplication;
 import timber.log.Timber;
 
 /**
  * 23.05.2018.
  */
-public class App extends Application {
+public class ApplicationController extends DaggerApplication {
 
     @Override
     public void onCreate() {
@@ -38,5 +40,10 @@ public class App extends Application {
             return;
         }
         LeakCanary.install(this);
+    }
+
+    @Override
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        return DaggerAppComponent.builder().application(this).build();
     }
 }

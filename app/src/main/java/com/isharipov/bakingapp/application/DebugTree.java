@@ -1,4 +1,4 @@
-package com.isharipov.bakingapp.app;
+package com.isharipov.bakingapp.application;
 
 import android.support.annotation.NonNull;
 
