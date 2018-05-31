@@ -16,6 +16,8 @@ import butterknife.ButterKnife;
 public class RecipeListViewHolder extends RecyclerView.ViewHolder {
 
     ImageView recipeImage;
+    @BindView(R.id.recipe_name)
+    TextView recipeName;
     @BindView(R.id.recipe_servings)
     TextView servings;
 
@@ -26,6 +28,10 @@ public class RecipeListViewHolder extends RecyclerView.ViewHolder {
 
     public ImageView getRecipeImage() {
         return recipeImage;
+    }
+
+    public TextView getRecipeName() {
+        return recipeName;
     }
 
     public TextView getServings() {

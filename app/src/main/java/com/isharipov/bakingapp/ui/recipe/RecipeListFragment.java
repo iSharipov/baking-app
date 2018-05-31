@@ -3,7 +3,8 @@ package com.isharipov.bakingapp.ui.recipe;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v4.widget.ContentLoadingProgressBar;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindInt;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import dagger.android.support.DaggerFragment;
@@ -33,6 +35,10 @@ public class RecipeListFragment extends DaggerFragment implements RecipeListCont
 
     @BindView(R.id.recipe_list_view)
     RecyclerView recipeListView;
+    @BindView(R.id.progress_bar)
+    ContentLoadingProgressBar progressBar;
+    @BindInt(R.integer.grid_column_number)
+    int gridColumnNumber;
     private RecipeListAdapter recipeListAdapter;
 
     @Inject
@@ -51,15 +57,18 @@ public class RecipeListFragment extends DaggerFragment implements RecipeListCont
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_recipe_list, container, false);
         ButterKnife.bind(this, root);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recipeListView.setLayoutManager(linearLayoutManager);
+        recipeListView.setLayoutManager(new GridLayoutManager(getContext(), gridColumnNumber));
         recipeListView.setAdapter(recipeListAdapter);
         return root;
     }
 
     @Override
     public void setLoadingIndicator(boolean active) {
-
+        if (active) {
+            progressBar.show();
+        } else {
+            progressBar.hide();
+        }
     }
 
     @Override

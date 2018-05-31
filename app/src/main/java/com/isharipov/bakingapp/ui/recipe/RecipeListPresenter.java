@@ -57,7 +57,7 @@ public final class RecipeListPresenter implements RecipeListContract.Presenter {
 
                     @Override
                     public void onComplete() {
-
+                        view.setLoadingIndicator(false);
                     }
                 });
     }
