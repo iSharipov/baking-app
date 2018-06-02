@@ -1,4 +1,4 @@
-package com.isharipov.bakingapp.utils;
+package com.isharipov.bakingapp.utils.network;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

@@ -42,7 +42,7 @@ public final class RecipeListPresenter implements RecipeListContract.Presenter {
                 .subscribe(new Observer<List<Recipe>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        compositeDisposable.add(d);
                     }
 
                     @Override

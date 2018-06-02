@@ -30,7 +30,11 @@ dependencies {
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$versions.LEAK_CANARY"
     testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$versions.LEAK_CANARY"
 
-    implementation "com.github.bumptech.glide:glide:$versions.GLIDE"
+    implementation ("com.github.bumptech.glide:glide:$versions.GLIDE"){
+        exclude group: "com.android.support"
+    }
+    implementation "com.github.bumptech.glide:okhttp3-integration:$versions.GLIDE"
+    annotationProcessor "com.github.bumptech.glide:compiler:$versions.GLIDE"
 
     implementation("com.squareup.retrofit2:retrofit:$versions.RETROFIT") {
         exclude module: 'okhttp'

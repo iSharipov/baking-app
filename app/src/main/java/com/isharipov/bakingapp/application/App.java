@@ -1,8 +1,10 @@
 package com.isharipov.bakingapp.application;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.isharipov.bakingapp.BuildConfig;
+import com.isharipov.bakingapp.application.di.AppComponent;
 import com.isharipov.bakingapp.application.di.DaggerAppComponent;
 import com.squareup.leakcanary.LeakCanary;
 
@@ -13,7 +15,9 @@ import timber.log.Timber;
 /**
  * 23.05.2018.
  */
-public class ApplicationController extends DaggerApplication {
+public class App extends DaggerApplication {
+
+    private AppComponent appComponent;
 
     @Override
     public void onCreate() {
@@ -44,6 +48,15 @@ public class ApplicationController extends DaggerApplication {
 
     @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        return DaggerAppComponent.builder().application(this).build();
+        appComponent = DaggerAppComponent.builder().application(this).build();
+        return appComponent;
+    }
+
+    public static App getApp(Context context) {
+        return (App) context.getApplicationContext();
+    }
+
+    public AppComponent getAppComponent() {
+        return appComponent;
     }
 }

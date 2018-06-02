@@ -2,7 +2,8 @@ package com.isharipov.bakingapp.application.di;
 
 import android.app.Application;
 
-import com.isharipov.bakingapp.application.ApplicationController;
+import com.isharipov.bakingapp.application.App;
+import com.isharipov.bakingapp.application.glide.GlideConfiguration;
 
 import javax.inject.Singleton;
 
@@ -22,7 +23,9 @@ import dagger.android.support.AndroidSupportInjectionModule;
         BakingApiServiceModule.class,
         ActivityBindingModule.class,
         AndroidSupportInjectionModule.class})
-public interface AppComponent extends AndroidInjector<ApplicationController> {
+public interface AppComponent extends AndroidInjector<App> {
+
+    void inject(GlideConfiguration glideConfiguration);
 
     @Component.Builder
     interface Builder {

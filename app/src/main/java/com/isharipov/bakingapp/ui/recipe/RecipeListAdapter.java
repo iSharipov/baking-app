@@ -7,7 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.isharipov.bakingapp.R;
+import com.isharipov.bakingapp.application.glide.GlideApp;
+import com.isharipov.bakingapp.application.glide.VideoThumbnailUrl;
 import com.isharipov.bakingapp.model.Recipe;
+import com.isharipov.bakingapp.model.Step;
 
 import java.util.List;
 
@@ -34,8 +37,26 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RecipeListViewHolder holder, int position) {
-        holder.getRecipeName().setText(recipes.get(position).getName());
-        holder.getServings().setText(String.valueOf(recipes.get(position).getServings()));
+        Recipe recipe = recipes.get(position);
+        holder.recipeName.setText(recipe.getName());
+        holder.servings.setText(String.valueOf(recipe.getServings()));
+
+        if (!recipe.getImage().isEmpty()) {
+            GlideApp.with(holder.itemView)
+                    .load(recipe.getImage())
+                    .centerCrop()
+                    .placeholder(holder.recipeTemplate)
+                    .centerCrop()
+                    .into(holder.recipeImage);
+        } else {
+            List<Step> steps = recipe.getSteps();
+            GlideApp.with(holder.itemView)
+                    .load(new VideoThumbnailUrl(steps.get(steps.size() - 1).getVideoURL()))
+                    .centerCrop()
+                    .placeholder(holder.recipeTemplate)
+                    .centerCrop()
+                    .into(holder.recipeImage);
+        }
     }
 
     @Override
