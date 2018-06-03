@@ -1,4 +1,4 @@
-package com.isharipov.bakingapp.ui.recipe;
+package com.isharipov.bakingapp.ui.recipelist;
 
 import com.isharipov.bakingapp.BasePresenter;
 import com.isharipov.bakingapp.BaseView;
@@ -16,6 +16,8 @@ public interface RecipeListContract {
         void showRecipes(List<Recipe> recipes);
 
         void showError();
+
+        void showRecipeDetailsUi(Recipe recipe);
 
     }
 

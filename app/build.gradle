@@ -16,6 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -30,7 +34,7 @@ dependencies {
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$versions.LEAK_CANARY"
     testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$versions.LEAK_CANARY"
 
-    implementation ("com.github.bumptech.glide:glide:$versions.GLIDE"){
+    implementation("com.github.bumptech.glide:glide:$versions.GLIDE") {
         exclude group: "com.android.support"
     }
     implementation "com.github.bumptech.glide:okhttp3-integration:$versions.GLIDE"
@@ -69,4 +73,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation "com.github.wseemann:FFmpegMediaMetadataRetriever:1.0.14"
+
 }

@@ -1,5 +1,6 @@
-package com.isharipov.bakingapp.ui.recipe;
+package com.isharipov.bakingapp.ui.recipelist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import com.isharipov.bakingapp.R;
 import com.isharipov.bakingapp.application.di.FragmentScoped;
 import com.isharipov.bakingapp.model.Recipe;
+import com.isharipov.bakingapp.ui.recipedetail.RecipeDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +53,7 @@ public class RecipeListFragment extends DaggerFragment implements RecipeListCont
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        recipeListAdapter = new RecipeListAdapter(new ArrayList<Recipe>());
+        recipeListAdapter = new RecipeListAdapter(new ArrayList<Recipe>(0), recipeItemListener);
     }
 
     @Nullable
@@ -86,6 +88,13 @@ public class RecipeListFragment extends DaggerFragment implements RecipeListCont
     }
 
     @Override
+    public void showRecipeDetailsUi(Recipe recipe) {
+        Intent intent = new Intent(getContext(), RecipeDetailActivity.class);
+        intent.putExtra(RecipeDetailActivity.RECIPE, recipe);
+        startActivity(intent);
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         recipeListPresenter.takeView(this);
@@ -97,4 +106,11 @@ public class RecipeListFragment extends DaggerFragment implements RecipeListCont
         super.onPause();
         recipeListPresenter.unsubscribe();
     }
+
+    public interface RecipeItemListener {
+
+        void onRecipeClick(Recipe clickedRecipe);
+    }
+
+    private RecipeItemListener recipeItemListener = this::showRecipeDetailsUi;
 }

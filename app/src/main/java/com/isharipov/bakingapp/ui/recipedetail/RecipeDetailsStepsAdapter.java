@@ -1,0 +1,59 @@
+package com.isharipov.bakingapp.ui.recipedetail;
+
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.isharipov.bakingapp.R;
+import com.isharipov.bakingapp.model.Step;
+
+import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
+/**
+ * 03.06.2018.
+ */
+public class RecipeDetailsStepsAdapter extends RecyclerView.Adapter<RecipeDetailStepsViewHolder> {
+
+    private final List<Step> steps;
+    private final RecipeDetailStepsFragment.StepItemListener stepItemListener;
+
+    public RecipeDetailsStepsAdapter(List<Step> steps, RecipeDetailStepsFragment.StepItemListener stepItemListener) {
+        this.steps = steps;
+        this.stepItemListener = stepItemListener;
+    }
+
+    @NonNull
+    @Override
+    public RecipeDetailStepsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.recipe_step_layout_row, parent, false);
+        return new RecipeDetailStepsViewHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull RecipeDetailStepsViewHolder holder, int position) {
+        final Step step = steps.get(position);
+        holder.recipeStepShortDescription.setText(step.getShortDescription());
+        holder.recipeStepDescription.setText(step.getDescription());
+
+        holder.itemView.setOnClickListener(v -> stepItemListener.onStepClick(step));
+    }
+
+    @Override
+    public int getItemCount() {
+        return steps.size();
+    }
+
+    public void replaceData(List<Step> steps) {
+        setList(steps);
+    }
+
+    private void setList(List<Step> steps) {
+        this.steps.addAll(checkNotNull(steps));
+        notifyDataSetChanged();
+    }
+}

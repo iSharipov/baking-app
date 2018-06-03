@@ -1,4 +1,4 @@
-package com.isharipov.bakingapp.ui.recipe;
+package com.isharipov.bakingapp.ui.recipelist;
 
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;

@@ -1,4 +1,4 @@
-package com.isharipov.bakingapp.ui.recipe;
+package com.isharipov.bakingapp.ui.recipelist;
 
 import com.isharipov.bakingapp.api.BakingApi;
 import com.isharipov.bakingapp.application.di.ActivityScoped;

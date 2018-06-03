@@ -1,4 +1,4 @@
-package com.isharipov.bakingapp.ui.recipe;
+package com.isharipov.bakingapp.ui.recipelist;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -21,10 +21,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListViewHolder> {
 
-    private List<Recipe> recipes;
+    private final List<Recipe> recipes;
+    private final RecipeListFragment.RecipeItemListener recipeItemListener;
 
-    public RecipeListAdapter(List<Recipe> recipes) {
+    public RecipeListAdapter(List<Recipe> recipes, RecipeListFragment.RecipeItemListener recipeItemListener) {
         this.recipes = recipes;
+        this.recipeItemListener = recipeItemListener;
     }
 
     @NonNull
@@ -37,7 +39,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RecipeListViewHolder holder, int position) {
-        Recipe recipe = recipes.get(position);
+        final Recipe recipe = recipes.get(position);
         holder.recipeName.setText(recipe.getName());
         holder.servings.setText(String.valueOf(recipe.getServings()));
 
@@ -55,6 +57,8 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListViewHolder
                     .centerCrop()
                     .into(holder.recipeImage);
         }
+
+        holder.itemView.setOnClickListener(v -> recipeItemListener.onRecipeClick(recipe));
     }
 
     @Override

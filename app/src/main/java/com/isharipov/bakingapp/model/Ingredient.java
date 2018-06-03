@@ -3,10 +3,12 @@ package com.isharipov.bakingapp.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * 24.05.2018.
  */
-public class Ingredient {
+public class Ingredient implements Serializable {
 
     @SerializedName("quantity")
     @Expose

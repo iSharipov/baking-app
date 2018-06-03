@@ -1,0 +1,19 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.isharipov.bakingapp.ui.recipedetail.RecipeDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar" />
+
+        <include layout="@layout/content_recipe_detail_ingredients" />
+
+        <include layout="@layout/content_recipe_detail_steps" />
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
