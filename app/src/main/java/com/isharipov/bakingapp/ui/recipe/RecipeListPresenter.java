@@ -52,7 +52,7 @@ public final class RecipeListPresenter implements RecipeListContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        view.showError();
                     }
 
                     @Override

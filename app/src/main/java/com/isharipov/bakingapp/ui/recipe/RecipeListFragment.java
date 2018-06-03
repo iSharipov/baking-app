@@ -3,6 +3,7 @@ package com.isharipov.bakingapp.ui.recipe;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -40,6 +41,7 @@ public class RecipeListFragment extends DaggerFragment implements RecipeListCont
     @BindInt(R.integer.grid_column_number)
     int gridColumnNumber;
     private RecipeListAdapter recipeListAdapter;
+    View root;
 
     @Inject
     public RecipeListFragment() {
@@ -55,7 +57,7 @@ public class RecipeListFragment extends DaggerFragment implements RecipeListCont
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_recipe_list, container, false);
+        root = inflater.inflate(R.layout.fragment_recipe_list, container, false);
         ButterKnife.bind(this, root);
         recipeListView.setLayoutManager(new GridLayoutManager(getContext(), gridColumnNumber));
         recipeListView.setAdapter(recipeListAdapter);
@@ -69,6 +71,13 @@ public class RecipeListFragment extends DaggerFragment implements RecipeListCont
         } else {
             progressBar.hide();
         }
+    }
+
+    @Override
+    public void showError() {
+        Snackbar snackbar = Snackbar
+                .make(root, "Error while loading recipes", Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 
     @Override

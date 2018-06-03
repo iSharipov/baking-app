@@ -15,6 +15,8 @@ public interface RecipeListContract {
 
         void showRecipes(List<Recipe> recipes);
 
+        void showError();
+
     }
 
     interface Presenter extends BasePresenter<View> {
