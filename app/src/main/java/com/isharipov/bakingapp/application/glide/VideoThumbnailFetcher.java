@@ -29,7 +29,7 @@ public class VideoThumbnailFetcher implements DataFetcher<InputStream> {
         MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
         try {
             mediaMetadataRetriever.setDataSource(videoThumbnailUrl.getUrl(), new HashMap<String, String>());
-            bitmap = mediaMetadataRetriever.getFrameAtTime();
+            bitmap = mediaMetadataRetriever.getFrameAtTime(1,MediaMetadataRetriever.OPTION_CLOSEST);
         } finally {
             mediaMetadataRetriever.release();
         }

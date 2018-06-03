@@ -44,7 +44,6 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListViewHolder
         if (!recipe.getImage().isEmpty()) {
             GlideApp.with(holder.itemView)
                     .load(recipe.getImage())
-                    .centerCrop()
                     .placeholder(holder.recipeTemplate)
                     .centerCrop()
                     .into(holder.recipeImage);
@@ -52,7 +51,6 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListViewHolder
             List<Step> steps = recipe.getSteps();
             GlideApp.with(holder.itemView)
                     .load(new VideoThumbnailUrl(steps.get(steps.size() - 1).getVideoURL()))
-                    .centerCrop()
                     .placeholder(holder.recipeTemplate)
                     .centerCrop()
                     .into(holder.recipeImage);
