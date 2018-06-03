@@ -1,5 +1,6 @@
 package com.isharipov.bakingapp.ui.recipe;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
@@ -23,6 +24,7 @@ public class RecipeListActivity extends DaggerAppCompatActivity {
         initToolbar();
     }
 
+    @SuppressLint("RestrictedApi")
     private void initToolbar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(false);
