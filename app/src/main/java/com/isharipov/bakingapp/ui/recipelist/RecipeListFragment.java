@@ -53,7 +53,7 @@ public class RecipeListFragment extends DaggerFragment implements RecipeListCont
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        recipeListAdapter = new RecipeListAdapter(new ArrayList<Recipe>(0), recipeItemListener);
+        recipeListAdapter = new RecipeListAdapter(new ArrayList<>(0), recipeItemListener);
     }
 
     @Nullable

@@ -1,5 +1,6 @@
 package com.isharipov.bakingapp.ui.recipedetail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import com.isharipov.bakingapp.R;
 import com.isharipov.bakingapp.model.Recipe;
 import com.isharipov.bakingapp.model.Step;
+import com.isharipov.bakingapp.ui.stepdetail.StepDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +53,9 @@ public class RecipeDetailStepsFragment extends DaggerFragment implements RecipeD
 
     @Override
     public void showStepDetailsUi(Step step) {
-
+        Intent intent = new Intent(getContext(), StepDetailActivity.class);
+        intent.putExtra(StepDetailActivity.STEP, step);
+        startActivity(intent);
     }
 
     @Override

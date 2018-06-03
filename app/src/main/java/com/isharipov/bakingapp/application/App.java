@@ -2,6 +2,7 @@ package com.isharipov.bakingapp.application;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.multidex.MultiDex;
 
 import com.isharipov.bakingapp.BuildConfig;
 import com.isharipov.bakingapp.application.di.AppComponent;
@@ -24,6 +25,12 @@ public class App extends DaggerApplication {
         super.onCreate();
         initLogger();
         initLeakCanary();
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     private void initLogger() {

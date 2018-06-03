@@ -6,6 +6,7 @@ android {
         applicationId "com.isharipov.bakingapp"
         minSdkVersion 16
         targetSdkVersion 27
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -75,5 +76,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation "com.github.wseemann:FFmpegMediaMetadataRetriever:1.0.14"
+    implementation "com.google.android.exoplayer:exoplayer:2.8.1"
+
+    implementation "com.android.support:multidex:1.0.3"
 
 }
