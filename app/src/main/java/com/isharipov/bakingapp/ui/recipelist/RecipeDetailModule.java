@@ -1,6 +1,7 @@
 package com.isharipov.bakingapp.ui.recipelist;
 
 import com.isharipov.bakingapp.application.di.ActivityScoped;
+import com.isharipov.bakingapp.application.di.FragmentScoped;
 import com.isharipov.bakingapp.model.Recipe;
 import com.isharipov.bakingapp.ui.recipedetail.RecipeDetailActivity;
 import com.isharipov.bakingapp.ui.recipedetail.RecipeDetailIngredientsContract;
@@ -8,6 +9,9 @@ import com.isharipov.bakingapp.ui.recipedetail.RecipeDetailIngredientsFragment;
 import com.isharipov.bakingapp.ui.recipedetail.RecipeDetailIngredientsPresenter;
 import com.isharipov.bakingapp.ui.recipedetail.RecipeDetailStepsContract;
 import com.isharipov.bakingapp.ui.recipedetail.RecipeDetailStepsFragment;
+import com.isharipov.bakingapp.ui.stepdetail.StepDetailContract;
+import com.isharipov.bakingapp.ui.stepdetail.StepDetailFragment;
+import com.isharipov.bakingapp.ui.stepdetail.StepDetailPresenter;
 
 import dagger.Binds;
 import dagger.Module;
@@ -40,4 +44,12 @@ public abstract class RecipeDetailModule {
     static Recipe provideRecipe(RecipeDetailActivity activity) {
         return (Recipe) activity.getIntent().getSerializableExtra(RECIPE);
     }
+
+    @FragmentScoped
+    @ContributesAndroidInjector
+    abstract StepDetailFragment stepDetailFragment();
+
+    @ActivityScoped
+    @Binds
+    abstract StepDetailContract.Presenter stepDetailPresenter(StepDetailPresenter presenter);
 }

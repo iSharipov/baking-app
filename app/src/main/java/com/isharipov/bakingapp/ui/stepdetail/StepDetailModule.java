@@ -24,8 +24,8 @@ public abstract class StepDetailModule {
     @Binds
     abstract StepDetailContract.Presenter stepDetailPresenter(StepDetailPresenter presenter);
 
-    @Provides
-    static Step provideStep(StepDetailActivity activity) {
-        return (Step) activity.getIntent().getSerializableExtra(STEP);
-    }
+//    @Provides
+//    static Step provideStep(StepDetailActivity activity) {
+//        return (Step) activity.getIntent().getSerializableExtra(STEP);
+//    }
 }

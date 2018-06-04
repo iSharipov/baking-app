@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer name="grid_column_number">1</integer>
-    <integer name="grid_ingredients_column_number">2</integer>
+    <integer name="grid_ingredients_column_number">1</integer>
+    <bool name="two_pane_mode">false</bool>
 </resources>

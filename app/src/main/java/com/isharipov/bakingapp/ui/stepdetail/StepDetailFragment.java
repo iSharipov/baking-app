@@ -45,9 +45,8 @@ public class StepDetailFragment extends DaggerFragment implements StepDetailCont
     TextView textView;
     @BindView(R.id.player_view)
     PlayerView playerView;
-    @Inject
-    Step step;
     private SimpleExoPlayer player;
+    private Step step;
 
     private Timeline.Window window;
     private DataSource.Factory mediaDataSourceFactory;
@@ -55,12 +54,21 @@ public class StepDetailFragment extends DaggerFragment implements StepDetailCont
     private boolean shouldAutoPlay;
     private BandwidthMeter bandwidthMeter;
 
+    @Inject
+    public StepDetailFragment() {
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_recipe_step_detail, container, false);
         ButterKnife.bind(this, root);
+        if (getResources().getBoolean(R.bool.two_pane_mode)) {
+            step = (Step) getArguments().getSerializable(StepDetailActivity.STEP);
+        } else {
+            step = (Step) getActivity().getIntent().getSerializableExtra(StepDetailActivity.STEP);
+        }
+
         showStep(step);
         shouldAutoPlay = true;
         bandwidthMeter = new DefaultBandwidthMeter();
@@ -139,5 +147,13 @@ public class StepDetailFragment extends DaggerFragment implements StepDetailCont
         if (Util.SDK_INT > 23) {
             releasePlayer();
         }
+    }
+
+    public static StepDetailFragment instance(Step step) {
+        StepDetailFragment stepDetailFragment = new StepDetailFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(StepDetailActivity.STEP, step);
+        stepDetailFragment.setArguments(args);
+        return stepDetailFragment;
     }
 }

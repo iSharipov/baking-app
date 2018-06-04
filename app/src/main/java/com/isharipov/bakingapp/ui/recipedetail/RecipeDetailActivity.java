@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 
 import com.isharipov.bakingapp.R;
 import com.isharipov.bakingapp.application.di.ActivityScoped;
+import com.isharipov.bakingapp.model.Recipe;
+import com.isharipov.bakingapp.ui.stepdetail.StepDetailFragment;
 
 import javax.inject.Inject;
 
@@ -25,6 +27,9 @@ public class RecipeDetailActivity extends DaggerAppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    @Inject
+    StepDetailFragment stepDetailFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +37,11 @@ public class RecipeDetailActivity extends DaggerAppCompatActivity {
         ButterKnife.bind(this);
 
         initToolbar();
+        if (getResources().getBoolean(R.bool.two_pane_mode)) {
+            Recipe recipe = (Recipe) getIntent().getSerializableExtra(RECIPE);
+            StepDetailFragment stepDetailFragment = StepDetailFragment.instance(recipe.getSteps().get(0));
+            getSupportFragmentManager().beginTransaction().add(R.id.recipe_detail_container, stepDetailFragment).commit();
+        }
     }
 
     @SuppressLint("RestrictedApi")

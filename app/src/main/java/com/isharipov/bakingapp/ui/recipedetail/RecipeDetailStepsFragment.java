@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,12 +15,15 @@ import com.isharipov.bakingapp.R;
 import com.isharipov.bakingapp.model.Recipe;
 import com.isharipov.bakingapp.model.Step;
 import com.isharipov.bakingapp.ui.stepdetail.StepDetailActivity;
+import com.isharipov.bakingapp.ui.stepdetail.StepDetailFragment;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindBool;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import dagger.android.support.DaggerFragment;
@@ -31,6 +35,8 @@ public class RecipeDetailStepsFragment extends DaggerFragment implements RecipeD
 
     @BindView(R.id.recipe_steps_view)
     RecyclerView recipeStepsView;
+    @BindBool(R.bool.two_pane_mode)
+    boolean twoPaneMode;
     private RecipeDetailsStepsAdapter recipeDetailsStepsAdapter;
 
     @Inject
@@ -53,9 +59,14 @@ public class RecipeDetailStepsFragment extends DaggerFragment implements RecipeD
 
     @Override
     public void showStepDetailsUi(Step step) {
-        Intent intent = new Intent(getContext(), StepDetailActivity.class);
-        intent.putExtra(StepDetailActivity.STEP, step);
-        startActivity(intent);
+        if (twoPaneMode) {
+            Fragment fragment = StepDetailFragment.instance(step);
+            getFragmentManager().beginTransaction().replace(R.id.recipe_detail_container, fragment).commit();
+        } else {
+            Intent intent = new Intent(getContext(), StepDetailActivity.class);
+            intent.putExtra(StepDetailActivity.STEP, step);
+            startActivity(intent);
+        }
     }
 
     @Override
