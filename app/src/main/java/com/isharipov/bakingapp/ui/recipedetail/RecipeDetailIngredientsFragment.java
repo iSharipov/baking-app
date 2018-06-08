@@ -13,6 +13,7 @@ import com.isharipov.bakingapp.R;
 import com.isharipov.bakingapp.application.di.ActivityScoped;
 import com.isharipov.bakingapp.model.Ingredient;
 import com.isharipov.bakingapp.model.Recipe;
+import com.isharipov.bakingapp.ui.widget.RecipeDetailUpdateService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +60,15 @@ public class RecipeDetailIngredientsFragment extends DaggerFragment implements R
         ButterKnife.bind(this, root);
         recypeIngredientsView.setLayoutManager(new GridLayoutManager(getContext(), gridColumnNumber));
         recypeIngredientsView.setAdapter(recipeDetailIngredientsAdapter);
-        showIngredients(recipe.getIngredients());
+        List<Ingredient> ingredients = recipe.getIngredients();
+        showIngredients(ingredients);
+
+        ArrayList<String> ingredientsForWidget = new ArrayList<>();
+        for (Ingredient ingredient : ingredients) {
+            ingredientsForWidget.add(ingredient.getIngredient());
+        }
+
+        RecipeDetailUpdateService.startBakingService(getContext(), ingredientsForWidget);
         return root;
     }
 

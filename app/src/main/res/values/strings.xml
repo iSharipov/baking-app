@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">baking app</string>
     <string name="font_fontFamily_medium">sans-serif</string>
+    <string name="baking_widget">Baking Widget</string>
 </resources>
