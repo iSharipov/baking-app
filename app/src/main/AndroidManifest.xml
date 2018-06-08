@@ -23,6 +23,26 @@
         </activity>
         <activity android:name=".ui.recipedetail.RecipeDetailActivity" />
         <activity android:name=".ui.stepdetail.StepDetailActivity" />
+
+        <service
+            android:name=".ui.widget.RecipeDetailWidgetRemoteViewsService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+        <service android:name=".ui.widget.RecipeDetailUpdateService" />
+
+        <receiver
+            android:name=".ui.widget.RecipeDetailWidgetProvider"
+            android:icon="@drawable/ic_cake_blue_36dp">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE2" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/recipe_detail_widget_info" />
+        </receiver>
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.isharipov.bakingapp.ui.recipedetail;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.isharipov.bakingapp.R;
@@ -18,6 +19,8 @@ public class RecipeDetailStepsViewHolder extends RecyclerView.ViewHolder {
     TextView recipeStepShortDescription;
     @BindView(R.id.recipe_step_description)
     TextView recipeStepDescription;
+    @BindView(R.id.recipe_step_video_thumbnail)
+    ImageView recipeStepVideoThumbnail;
 
     public RecipeDetailStepsViewHolder(View itemView) {
         super(itemView);

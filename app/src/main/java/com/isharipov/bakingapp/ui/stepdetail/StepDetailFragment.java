@@ -39,6 +39,9 @@ import dagger.android.support.DaggerFragment;
  */
 public class StepDetailFragment extends DaggerFragment implements StepDetailContract.View {
 
+    private static final String PLAY_WHEN_READY = "PLAY_WHEN_READY";
+    private static final String CURRENT_POSITION = "CURRENT_POSITION";
+
     @Inject
     StepDetailContract.Presenter presenter;
     @BindView(R.id.recipe_step_detail_description)
@@ -53,6 +56,7 @@ public class StepDetailFragment extends DaggerFragment implements StepDetailCont
     private DefaultTrackSelector trackSelector;
     private boolean shouldAutoPlay;
     private BandwidthMeter bandwidthMeter;
+    private long currentPosition;
 
     @Inject
     public StepDetailFragment() {
@@ -63,6 +67,10 @@ public class StepDetailFragment extends DaggerFragment implements StepDetailCont
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_recipe_step_detail, container, false);
         ButterKnife.bind(this, root);
+        if (savedInstanceState != null) {
+            shouldAutoPlay = savedInstanceState.getBoolean(PLAY_WHEN_READY);
+            currentPosition = savedInstanceState.getLong(CURRENT_POSITION);
+        }
         if (getResources().getBoolean(R.bool.two_pane_mode)) {
             step = (Step) getArguments().getSerializable(StepDetailActivity.STEP);
         } else {
@@ -102,6 +110,7 @@ public class StepDetailFragment extends DaggerFragment implements StepDetailCont
         player = ExoPlayerFactory.newSimpleInstance(getContext(), trackSelector);
         playerView.setPlayer(player);
         player.setPlayWhenReady(shouldAutoPlay);
+        player.seekTo(currentPosition);
         DefaultExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
         MediaSource mediaSource = new ExtractorMediaSource(Uri.parse(step.getVideoURL()),
                 mediaDataSourceFactory, extractorsFactory, null, null);
@@ -111,6 +120,7 @@ public class StepDetailFragment extends DaggerFragment implements StepDetailCont
     private void releasePlayer() {
         if (player != null) {
             shouldAutoPlay = player.getPlayWhenReady();
+            currentPosition = player.getCurrentPosition();
             player.release();
             player = null;
             trackSelector = null;
@@ -155,5 +165,12 @@ public class StepDetailFragment extends DaggerFragment implements StepDetailCont
         args.putSerializable(StepDetailActivity.STEP, step);
         stepDetailFragment.setArguments(args);
         return stepDetailFragment;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(PLAY_WHEN_READY, player.getPlayWhenReady());
+        outState.putLong(CURRENT_POSITION, player.getContentPosition());
     }
 }

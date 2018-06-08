@@ -39,7 +39,9 @@ public class RecipeDetailsStepsAdapter extends RecyclerView.Adapter<RecipeDetail
         final Step step = steps.get(position);
         holder.recipeStepShortDescription.setText(step.getShortDescription());
         holder.recipeStepDescription.setText(step.getDescription());
-
+        if (step.getVideoURL() != null && !step.getVideoURL().isEmpty()) {
+            holder.recipeStepVideoThumbnail.setVisibility(View.VISIBLE);
+        }
         holder.itemView.setOnClickListener(v -> stepItemListener.onStepClick(step));
     }
 
