@@ -78,7 +78,6 @@ public class StepDetailFragment extends DaggerFragment implements StepDetailCont
         }
 
         showStep(step);
-        shouldAutoPlay = true;
         bandwidthMeter = new DefaultBandwidthMeter();
         mediaDataSourceFactory = new DefaultDataSourceFactory(getContext(),
                 Util.getUserAgent(getContext(), "mediaPlayerSample"),
@@ -109,12 +108,12 @@ public class StepDetailFragment extends DaggerFragment implements StepDetailCont
         trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
         player = ExoPlayerFactory.newSimpleInstance(getContext(), trackSelector);
         playerView.setPlayer(player);
-        player.setPlayWhenReady(shouldAutoPlay);
-        player.seekTo(currentPosition);
         DefaultExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
         MediaSource mediaSource = new ExtractorMediaSource(Uri.parse(step.getVideoURL()),
                 mediaDataSourceFactory, extractorsFactory, null, null);
         player.prepare(mediaSource);
+        player.setPlayWhenReady(shouldAutoPlay);
+        player.seekTo(currentPosition);
     }
 
     private void releasePlayer() {

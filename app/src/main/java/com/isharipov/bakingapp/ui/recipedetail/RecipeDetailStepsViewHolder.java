@@ -21,6 +21,8 @@ public class RecipeDetailStepsViewHolder extends RecyclerView.ViewHolder {
     TextView recipeStepDescription;
     @BindView(R.id.recipe_step_video_thumbnail)
     ImageView recipeStepVideoThumbnail;
+    @BindView(R.id.recipe_step_thumbnail)
+    ImageView recipeStepThumbnail;
 
     public RecipeDetailStepsViewHolder(View itemView) {
         super(itemView);

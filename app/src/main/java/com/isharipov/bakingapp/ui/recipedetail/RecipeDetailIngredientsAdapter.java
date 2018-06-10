@@ -11,7 +11,8 @@ import com.isharipov.bakingapp.model.Ingredient;
 
 import java.util.List;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static com.bumptech.glide.util.Preconditions.checkNotNull;
+
 
 /**
  * 03.06.2018.

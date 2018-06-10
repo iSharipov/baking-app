@@ -47,8 +47,9 @@ public class RecipeDetailActivity extends DaggerAppCompatActivity {
     @SuppressLint("RestrictedApi")
     private void initToolbar() {
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(false);
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
         getSupportActionBar().setTitle("Baking");
     }
 }

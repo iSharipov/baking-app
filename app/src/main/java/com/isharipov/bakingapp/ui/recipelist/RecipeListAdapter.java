@@ -13,8 +13,10 @@ import com.isharipov.bakingapp.model.Recipe;
 import com.isharipov.bakingapp.model.Step;
 
 import java.util.List;
+import java.util.Objects;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static com.bumptech.glide.util.Preconditions.checkNotNull;
+
 
 /**
  * 25.05.2018.

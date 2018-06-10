@@ -17,12 +17,19 @@
         <activity android:name=".ui.recipelist.RecipeListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.recipedetail.RecipeDetailActivity" />
-        <activity android:name=".ui.stepdetail.StepDetailActivity" />
+        <activity android:name=".ui.recipedetail.RecipeDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.recipelist.RecipeListActivity" />
+        </activity>
+        <activity android:name=".ui.stepdetail.StepDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.recipedetail.RecipeDetailActivity" />
+        </activity>
 
         <service
             android:name=".ui.widget.RecipeDetailWidgetRemoteViewsService"

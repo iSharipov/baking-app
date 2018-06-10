@@ -3,4 +3,5 @@
     <string name="font_fontFamily_medium">sans-serif</string>
     <string name="baking_widget">Baking Widget</string>
     <string name="recipe_step_video_thumbnail">Recipe Step Video Thumbnail</string>
+    <string name="recipe_step_thumbnail">Recipe Step Thumbnail</string>
 </resources>

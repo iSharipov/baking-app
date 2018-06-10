@@ -7,11 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.isharipov.bakingapp.R;
+import com.isharipov.bakingapp.application.glide.GlideApp;
 import com.isharipov.bakingapp.model.Step;
 
 import java.util.List;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static com.bumptech.glide.util.Preconditions.checkNotNull;
+
 
 /**
  * 03.06.2018.
@@ -39,6 +41,20 @@ public class RecipeDetailsStepsAdapter extends RecyclerView.Adapter<RecipeDetail
         final Step step = steps.get(position);
         holder.recipeStepShortDescription.setText(step.getShortDescription());
         holder.recipeStepDescription.setText(step.getDescription());
+        String thumbnailURL = step.getThumbnailURL();
+        if (thumbnailURL != null && !thumbnailURL.isEmpty()) {
+            GlideApp
+                    .with(holder.itemView)
+                    .load(thumbnailURL)
+                    .centerCrop()
+                    .into(holder.recipeStepThumbnail);
+        } else {
+            GlideApp
+                    .with(holder.itemView)
+                    .load(R.drawable.recipe_template)
+                    .centerCrop()
+                    .into(holder.recipeStepThumbnail);
+        }
         if (step.getVideoURL() != null && !step.getVideoURL().isEmpty()) {
             holder.recipeStepVideoThumbnail.setVisibility(View.VISIBLE);
         }
